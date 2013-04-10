@@ -59,7 +59,7 @@ class screenpresenter {
 	protected function renderFilePaths() {
 		$content = '';
 		foreach ($this->files as $file) {
-			$content .= '<img src="' . htmlspecialchars($file) . '" />';
+			$content .= '<img src="' . htmlspecialchars($file) . '" />' . chr(10);
 		}
 
 		return $content;
