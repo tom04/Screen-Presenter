@@ -43,14 +43,7 @@ $(function () {
 			},
 			{
 				"screenNumber": 1,
-				"name": "screen1",
-				"showAsIntro": false,
-				"posX": 200,
-				"posY": 200,
-				"tooltipWidth": 450,
-				"bgcolor": "black",
-				"position": "TL",
-				"text": ""
+				"name": "screen1"
 			},
 			{
 				"screenNumber": 1,
@@ -324,7 +317,10 @@ $(function () {
 		if (step_config.text != "") {
 			var bgcolor = step_config.bgcolor;
 			var color = step_config.color;
-			if (step_config.tooltipWidth != '') tooltipWidth = step_config.tooltipWidth;
+			var tooltipWidth = 450;
+			if (step_config.tooltipWidth != '' && step_config.tooltipWidth != undefined) {
+				tooltipWidth = step_config.tooltipWidth;
+			}
 			var $tooltip = $('<div>', {
 				id: 'tour_tooltip',
 				className: 'tooltip',
@@ -334,6 +330,9 @@ $(function () {
 					'color': color
 				}).width(tooltipWidth).height("auto");
 			if (step_config.bgcolor == "white") $tooltip.addClass("white");
+			if (step_config.text == undefined) {
+				$tooltip = $('<div>');
+			}
 
 			//the css properties the tooltip should have
 			var properties = {};
@@ -441,6 +440,7 @@ $(function () {
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_B');
 					break;
 				case 'L'    :
+				default :
 					properties = {
 						'left': e_l + e_w + 20 + 'px',
 						'top': e_t + e_h / 2 - $tooltip.height() / 2 + 'px'
