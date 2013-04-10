@@ -3,7 +3,7 @@ $(function() {
 				general settings:
 				gridWidth: width of your presentation content, basis for your x-axis. For example if your layout is based on the 960.gs-framework, the gridWith setting would be 960. This is NOT the image width.
 				tooltipWidth: Standard width of your tooltips. Can be altered in every step
-						
+
 				Settings for each step of your presentation:
 				screenNumber: The image to be shown. Same order as in your index.html.
 				name: a unique identifier for your tooltip / screen / intro page. Serves as anchor name (default: step[number])
@@ -187,7 +187,7 @@ $(function() {
 				],
 				previousStep = false,
 				step = 0,
-				total_steps	= config.length;		
+				total_steps	= config.length;
 				$("#inner").css({
 					"margin-left": "-" + gridWidth / 2 + "px"
 				}).width(gridWidth);
@@ -224,7 +224,7 @@ $(function() {
 					lastStep = step;
 					step++;
 					showScreens(false);
-					gotoStep(step);				
+					gotoStep(step);
 				});
 				$('#prevstep').click(function(event){
 					previousStep = true
@@ -235,7 +235,27 @@ $(function() {
 					showScreens(false);
 					gotoStep(step);
 				});
-				
+				$('body').keyup(function(event) {
+					if (event.keyCode == '39') {
+						previousStep = false
+						event.preventDefault();
+						$.address.value(config[step+1].name);
+						lastStep = step;
+						step++;
+						showScreens(false);
+						gotoStep(step);
+					}
+					if (event.keyCode == '37') {
+						previousStep = true
+						event.preventDefault();
+						$.address.value(config[step-1].name);
+						lastStep = step;
+						step--;
+						showScreens(false);
+						gotoStep(step);
+					}
+				});
+
 				function gotoStep(newstep){
 					if(step>0)
 					{
@@ -249,17 +269,17 @@ $(function() {
 					else
 					{
 						$('#nextstep').show();
-						$('#nextstep').attr("href","#" + config[step+1].name);						
+						$('#nextstep').attr("href","#" + config[step+1].name);
 					}
-					showTooltip();				
+					showTooltip();
 				}
-		
+
 				function endTour(){
 					step = 0;
 					removeTooltip();
 					hideControls();
 				}
-				
+
 				function restartTour(){
 					step = 0;
 					gotoStep(step);
@@ -282,14 +302,14 @@ $(function() {
 						}
 						if(step < total_steps - 1){
 							if(step_config.screenNumber != next_step_config.screenNumber && previousStep == true)
-							{	
-								$(screens[step_config.screenNumber - 1]).fadeIn(500, function(){	
+							{
+								$(screens[step_config.screenNumber - 1]).fadeIn(500, function(){
 									$(screens[next_step_config.screenNumber - 1]).fadeOut(500).removeClass("active");
-								}).addClass("active");		
+								}).addClass("active");
 							}
 						}
 					}
-					else 
+					else
 					{
 								if($(screens[step_config.screenNumber - 1]).hasClass("active")){
 									$("#wrapper img:not(.active)").fadeOut(1000).removeClass("active");
@@ -297,11 +317,11 @@ $(function() {
 									$("#wrapper img.active").fadeOut(1000).removeClass("active");
 									$(screens[step_config.screenNumber - 1]).fadeIn(500).addClass("active");
 								}
-					
+
 					}
 				}
 				function showTooltip(){
-					removeTooltip();			
+					removeTooltip();
 					hideOverlay();
 					var step_config	= config[step];
 						if(step_config.text != ""){
@@ -317,15 +337,15 @@ $(function() {
 							'color'				: color
 						}).width(tooltipWidth).height("auto");
 						if(step_config.bgcolor=="white") $tooltip.addClass("white");
-				
+
 						//the css properties the tooltip should have
 						var properties		= {};
-						
+
 						var tip_position 	= step_config.position;
-						
+
 						//append the tooltip but hide it
 						$('#inner').prepend($tooltip);
-						
+
 						//get some info of the element
 						var e_w				= 0;
 						var e_h				= 0;
@@ -333,12 +353,12 @@ $(function() {
 						var e_t				= step_config.posY;
 						var anitop = 0;
 						var anileft = 0;
-						
+
 						switch(tip_position){
 							case 'TL'	:
 								properties = {
 									'left'	: e_l,
-									'top'	: e_t + e_h + 20 + 'px' 
+									'top'	: e_t + e_h + 20 + 'px'
 								};
 								$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_TL');
 								anitop =  e_t + e_h + 'px' ;
@@ -436,14 +456,14 @@ $(function() {
 								'opacity': 0
 							}
 						}
-						
+
 						var w_t	= $(window).scrollTop();
 						var w_b = $(window).scrollTop() + $(window).height();
 						var b_t = parseFloat(properties.top,10);
-						
+
 						if(e_t < b_t)
 							b_t = e_t;
-						
+
 						var b_b = parseFloat(properties.top,10) + $tooltip.height();
 						if((e_t + e_h) > b_b)
 							b_b = e_t + e_h;
@@ -487,13 +507,13 @@ $(function() {
 						}
 					}
 				}
-				
+
 				function removeTooltip(){
 					$('#tour_tooltip').fadeOut('fast', function(){
 						$(this).remove();
 					});
 				}
-				
+
 				function showControls(){
 					var $tourcontrols  = '<div id="tourcontrols" class="tourcontrols">';
 						$tourcontrols += '<div class="nav"><a class="button" id="prevstep" style="display:none;"></a>';
@@ -501,15 +521,15 @@ $(function() {
 						//$tourcontrols += '<div class="nav"><a id="restarttour" style="display:none;">[Neustart]</span>';
 						//$tourcontrols += '<a id="endtour" style="display:none;">[Beenden]</a></div>';
 						$tourcontrols += '</div>';
-					
+
 					$('body').prepend($tourcontrols);
 					$('#tourcontrols').animate({'bottom':'0px'},500);
 				}
-				
+
 				function hideControls(){
 					$('#tourcontrols').remove();
 				}
-				
+
 				function showOverlay(now,text){
 					var overlay	= '<div id="tour_overlay" class="overlay"></div>';
 					$('body').prepend(overlay);
@@ -519,7 +539,7 @@ $(function() {
 					$("#inner").prepend(introText);
 					innerWidth = $("#inner").width() / 10 * 7;
 					$("#introtext").css({
-						"top"	: $(window).height() * 0.5						
+						"top"	: $(window).height() * 0.5
 					}).width(innerWidth);
 					var introtextHeight = $("#introtext").height();
 					if(config[step].bgcolor=="white") $("#introtext").addClass("white");
@@ -528,13 +548,13 @@ $(function() {
 						"margin-left" : "-" + ($("#introtext").width() / 2) + "px"
 					});
 				}
-				
+
 				function hideOverlay(){
 					$('#tour_overlay,#introtext').fadeOut(700, function(){
 						$(this).remove();
 					});
 				}
-				
+
 			});
 $(document).ready(function(){
 
