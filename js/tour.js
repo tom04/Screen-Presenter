@@ -207,9 +207,9 @@ $(function () {
 		showScreens(true);
 		gotoStep(step);
 	})
-	$('#canceltour').live('click', endTour);
-	$('#endtour').live('click', endTour);
-	$('#restarttour').live('click', restartTour);
+	$('#canceltour').on('click', endTour);
+	$('#endtour').on('click', endTour);
+	$('#restarttour').on('click', restartTour);
 	$('#nextstep').click(function (event) {
 		previousStep = false
 		event.preventDefault();
@@ -323,7 +323,7 @@ $(function () {
 			}
 			var $tooltip = $('<div>', {
 				id: 'tour_tooltip',
-				className: 'tooltip',
+				class: 'tooltip',
 				html: '<p>' + step_config.text + '</p><span class="tooltip_arrow"></span>'
 			}).css({
 					'display': 'none',
