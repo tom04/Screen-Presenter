@@ -1,38 +1,4 @@
 $(function () {
-	/*
-	 general settings:
-	 gridWidth: width of your presentation content, basis for your x-axis. For example if your layout is based on the 960.gs-framework, the gridWith setting would be 960. This is NOT the image width.
-	 tooltipWidth: Standard width of your tooltips. Can be altered in every step
-
-	 Settings for each step of your presentation:
-	 screenNumber: The image to be shown. Same order as in your index.html.
-	 name: a unique identifier for your tooltip / screen / intro page. Serves as anchor name (default: step[number])
-	 showAsIntro: If true, an overlay is generated. Used for introducing a set of tooltips.
-	 posX: Position of the tooltip on x-axis (not needed on intro pages or if text is empty)
-	 posY: Position of the tooltip on y-axis (not needed on intro pages or if text is empty)
-	 tooltipWidth: Width of the tooltip (default: 250)
-	 color: the color of the tooltip or the intro page (black | white, default: black)
-	 text: the text inside the tooltip / the intro page. Leave empty for showing only the screen. (default empty)
-	 position: the position of the tip. Possible values are
-	 TL	top left
-	 TR  top right
-	 BL  bottom left
-	 BR  bottom right
-	 LT  left top
-	 LB  left bottom
-	 RT  right top
-	 RB  right bottom
-	 T   top
-	 R   right
-	 B   bottom
-	 L   left
-	 */
-	var gridWidth = 1000,
-		tooltipWidth = 250,
-		config = screenConfig,
-		previousStep = false,
-		step = 0,
-		total_steps = config.length - 1;
 	$("#inner").css({
 		"margin-left":"-" + gridWidth / 2 + "px"
 	}).width(gridWidth);
@@ -59,9 +25,6 @@ $(function () {
 		showScreens(true);
 		gotoStep(step);
 	})
-	$('#canceltour').on('click', endTour);
-	$('#endtour').on('click', endTour);
-	$('#restarttour').on('click', restartTour);
 	$('#nextstep').click(function (event) {
 		goNext();
 	});
@@ -87,7 +50,9 @@ $(function () {
 			showScreens(false);
 			gotoStep(step);
 		}
-	};
+	}
+
+	;
 
 	function goPrevious() {
 		previousStep = true
@@ -99,7 +64,9 @@ $(function () {
 			showScreens(false);
 			gotoStep(step);
 		}
-	};
+	}
+
+	;
 
 	function gotoStep(newstep) {
 //		console.log('newstep: ' + newstep + ', step: ' + step + ' of total: ' + total_steps);
@@ -116,17 +83,6 @@ $(function () {
 			$('#nextstep').attr("href", "#" + config[step + 1].name);
 		}
 		showTooltip();
-	}
-
-	function endTour() {
-		step = 0;
-		removeTooltip();
-		hideControls();
-	}
-
-	function restartTour() {
-		step = 0;
-		gotoStep(step);
 	}
 
 	function showScreens(initial) {
@@ -198,8 +154,8 @@ $(function () {
 			//get some info of the element
 			var e_w = 0;
 			var e_h = 0;
-			var e_l = step_config.posX;
-			var e_t = step_config.posY;
+			var e_l = (step_config.posX != undefined) ? step_config.posX : 0;
+			var e_t = (step_config.posY != undefined) ? step_config.posY : 0;
 			var anitop = 0;
 			var anileft = 0;
 
@@ -364,14 +320,12 @@ $(function () {
 	}
 
 	function showControls() {
-		var $tourcontrols = '<div id="tourcontrols" class="tourcontrols">';
-		$tourcontrols += '<div class="nav"><a class="button" id="prevstep" style="display:none;"></a>';
-		$tourcontrols += '<a class="button" id="nextstep" style="display:none;"></a></div>';
-		//$tourcontrols += '<div class="nav"><a id="restarttour" style="display:none;">[Neustart]</span>';
-		//$tourcontrols += '<a id="endtour" style="display:none;">[Beenden]</a></div>';
-		$tourcontrols += '</div>';
+		var controls = '<div id="tourcontrols" class="tourcontrols">';
+		controls += '<div class="nav"><a class="button" id="prevstep" style="display:none;"></a>';
+		controls += '<a class="button" id="nextstep" style="display:none;"></a></div>';
+		controls += '</div>';
 
-		$('body').prepend($tourcontrols);
+		$('body').prepend(controls);
 		$('#tourcontrols').animate({'bottom':'0px'}, 500);
 	}
 
@@ -409,5 +363,5 @@ $(document).ready(function () {
 
 })
 $(window).load(function () {
-	$("#wrapper img").eq(0).fadeIn(1500);
+	$("#wrapper img").eq(0).fadeIn(500);
 })
