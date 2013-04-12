@@ -32,16 +32,16 @@ $(function () {
 		config = screenConfig,
 		previousStep = false,
 		step = 0,
-		total_steps = config.length;
+		total_steps = config.length - 1;
 	$("#inner").css({
-		"margin-left": "-" + gridWidth / 2 + "px"
+		"margin-left":"-" + gridWidth / 2 + "px"
 	}).width(gridWidth);
 	var screenWidth = $("#wrapper").children("img").width()
 		, screenHeight = $("#wrapper").children("img").height()
 		, screens = $("#wrapper img");
 
 	$("#wrapper img").css({
-		"margin-left": "-" + (screenWidth / 2) + "px"
+		"margin-left":"-" + (screenWidth / 2) + "px"
 	})
 	$("#wrapper,#inner").height(screenHeight);
 	if (config[step].showAsIntro == true) showOverlay(1, config[step].text);
@@ -52,7 +52,7 @@ $(function () {
 	$.address.externalChange(function (event) {
 		var anchor = window.location.hash.substring(1);
 		if (anchor != "") {
-			for (var stepnumber = 0; stepnumber <= total_steps - 1; stepnumber++) {
+			for (var stepnumber = 0; stepnumber <= total_steps; stepnumber++) {
 				if (config[stepnumber].name == anchor) step = stepnumber;
 			}
 		}
@@ -63,52 +63,53 @@ $(function () {
 	$('#endtour').on('click', endTour);
 	$('#restarttour').on('click', restartTour);
 	$('#nextstep').click(function (event) {
-		previousStep = false
-		event.preventDefault();
-		$.address.value(config[step + 1].name);
-		lastStep = step;
-		step++;
-		showScreens(false);
-		gotoStep(step);
+		goNext();
 	});
 	$('#prevstep').click(function (event) {
-		previousStep = true
-		event.preventDefault();
-		$.address.value(config[step - 1].name);
-		lastStep = step;
-		step--;
-		showScreens(false);
-		gotoStep(step);
+		goPrevious();
 	});
 	$('body').keyup(function (event) {
 		if (event.keyCode == '39') {
-			previousStep = false
-			event.preventDefault();
+			goNext();
+		}
+		if (event.keyCode == '37') {
+			goPrevious();
+		}
+	});
+
+	function goNext() {
+		previousStep = false
+		event.preventDefault();
+		if (step < total_steps) {
 			$.address.value(config[step + 1].name);
 			lastStep = step;
 			step++;
 			showScreens(false);
 			gotoStep(step);
 		}
-		if (event.keyCode == '37') {
-			previousStep = true
-			event.preventDefault();
+	};
+
+	function goPrevious() {
+		previousStep = true
+		event.preventDefault();
+		if (step > 0) {
 			$.address.value(config[step - 1].name);
 			lastStep = step;
 			step--;
 			showScreens(false);
 			gotoStep(step);
 		}
-	});
+	};
 
 	function gotoStep(newstep) {
+//		console.log('newstep: ' + newstep + ', step: ' + step + ' of total: ' + total_steps);
 		if (step > 0) {
 			$('#prevstep').show();
 			$('#prevstep').attr("href", "#" + config[step - 1].name);
 		}
 		else
 			$('#prevstep').hide();
-		if (step == total_steps - 1)
+		if (step == total_steps)
 			$('#nextstep').hide();
 		else {
 			$('#nextstep').show();
@@ -129,10 +130,10 @@ $(function () {
 	}
 
 	function showScreens(initial) {
-		//console.log(initial + " | " + step  + " | " + $(screens)  + " | " + lastStep)
+//		console.log(initial + " | " + step + " | " + total_steps + " | ")
 		if (step > 0)
 			var previous_step_config = config[step - 1];
-		if (step < total_steps - 1)
+		if (step < total_steps)
 			var next_step_config = config[step + 1];
 		var step_config = config[step];
 		if (initial == false) {
@@ -143,7 +144,7 @@ $(function () {
 					}).addClass("active");
 				}
 			}
-			if (step < total_steps - 1) {
+			if (step < total_steps) {
 				if (step_config.screenNumber != next_step_config.screenNumber && previousStep == true) {
 					$(screens[step_config.screenNumber - 1]).fadeIn(500,function () {
 						$(screens[next_step_config.screenNumber - 1]).fadeOut(500).removeClass("active");
@@ -174,12 +175,12 @@ $(function () {
 				tooltipWidth = step_config.tooltipWidth;
 			}
 			var $tooltip = $('<div>', {
-				id: 'tour_tooltip',
-				class: 'tooltip',
-				html: '<p>' + step_config.text + '</p><span class="tooltip_arrow"></span>'
+				id:'tour_tooltip',
+				class:'tooltip',
+				html:'<p>' + step_config.text + '</p><span class="tooltip_arrow"></span>'
 			}).css({
-					'display': 'none',
-					'color': color
+					'display':'none',
+					'color':color
 				}).width(tooltipWidth).height("auto");
 			if (step_config.bgcolor == "white") $tooltip.addClass("white");
 			if (step_config.text == undefined) {
@@ -205,88 +206,88 @@ $(function () {
 			switch (tip_position) {
 				case 'TL'    :
 					properties = {
-						'left': e_l,
-						'top': e_t + e_h + 20 + 'px'
+						'left':e_l,
+						'top':e_t + e_h + 20 + 'px'
 					};
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_TL');
 					anitop = e_t + e_h + 'px';
 					break;
 				case 'TR'    :
 					properties = {
-						'left': e_l + e_w - $tooltip.width() + 'px',
-						'top': e_t + e_h + 20 + 'px'
+						'left':e_l + e_w - $tooltip.width() + 'px',
+						'top':e_t + e_h + 20 + 'px'
 					};
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_TR');
 					anitop = e_t + e_h + 'px';
 					break;
 				case 'BL'    :
 					properties = {
-						'left': e_l + 'px',
-						'top': e_t - $tooltip.height() - 20 + 'px'
+						'left':e_l + 'px',
+						'top':e_t - $tooltip.height() - 20 + 'px'
 					};
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_BL');
 					anitop = e_t - $tooltip.height() + 'px';
 					break;
 				case 'BR'    :
 					properties = {
-						'left': e_l + e_w - $tooltip.width() + 'px',
-						'top': e_t - $tooltip.height() - 20 + 'px'
+						'left':e_l + e_w - $tooltip.width() + 'px',
+						'top':e_t - $tooltip.height() - 20 + 'px'
 					};
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_BR');
 					anitop = e_t - $tooltip.height() + 'px';
 					break;
 				case 'LT'    :
 					properties = {
-						'left': e_l + e_w - 20 + 'px',
-						'top': e_t + 'px'
+						'left':e_l + e_w - 20 + 'px',
+						'top':e_t + 'px'
 					};
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_LT');
 					anileft = e_l + e_w + 'px';
 					break;
 				case 'LB'    :
 					properties = {
-						'left': e_l + e_w - 20 + 'px',
-						'top': e_t + e_h - $tooltip.height() + 'px'
+						'left':e_l + e_w - 20 + 'px',
+						'top':e_t + e_h - $tooltip.height() + 'px'
 					};
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_LB');
 					anileft = e_l + e_w + 'px';
 					break;
 				case 'RT'    :
 					properties = {
-						'left': e_l - $tooltip.width() + 20 + 'px',
-						'top': e_t + 'px'
+						'left':e_l - $tooltip.width() + 20 + 'px',
+						'top':e_t + 'px'
 					};
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_RT');
 					anileft = e_l - $tooltip.width() + 'px';
 					break;
 				case 'RB'    :
 					properties = {
-						'left': e_l - $tooltip.width() + 20 + 'px',
-						'top': e_t + e_h - $tooltip.height() + 'px'
+						'left':e_l - $tooltip.width() + 20 + 'px',
+						'top':e_t + e_h - $tooltip.height() + 'px'
 					};
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_RB');
 					anileft = e_l - $tooltip.width() + 'px';
 					break;
 				case 'T'    :
 					properties = {
-						'left': e_l + e_w / 2 - $tooltip.width() / 2 + 'px',
-						'top': e_t + e_h + 20 + 'px'
+						'left':e_l + e_w / 2 - $tooltip.width() / 2 + 'px',
+						'top':e_t + e_h + 20 + 'px'
 					};
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_T');
 					anitop = e_t + e_h + 'px';
 					break;
 				case 'R'    :
 					properties = {
-						'left': e_l - $tooltip.width() - 20 + 'px',
-						'top': e_t + e_h / 2 - $tooltip.height() / 2 + 'px'
+						'left':e_l - $tooltip.width() - 20 + 'px',
+						'top':e_t + e_h / 2 - $tooltip.height() / 2 + 'px'
 					};
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_R');
 					anileft = e_l - $tooltip.width() + 'px';
 					break;
 				case 'B'    :
 					properties = {
-						'left': e_l + e_w / 2 - $tooltip.width() / 2 + 'px',
-						'top': e_t - $tooltip.height() - 20 + 'px'
+						'left':e_l + e_w / 2 - $tooltip.width() / 2 + 'px',
+						'top':e_t - $tooltip.height() - 20 + 'px'
 					};
 					anitop = e_t - $tooltip.height() + 'px';
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_B');
@@ -294,15 +295,15 @@ $(function () {
 				case 'L'    :
 				default :
 					properties = {
-						'left': e_l + e_w + 20 + 'px',
-						'top': e_t + e_h / 2 - $tooltip.height() / 2 + 'px'
+						'left':e_l + e_w + 20 + 'px',
+						'top':e_t + e_h / 2 - $tooltip.height() / 2 + 'px'
 					};
 					$tooltip.find('span.tooltip_arrow').addClass('tooltip_arrow_L');
 					anileft = e_l + e_w + 'px';
 					break;
 					properties += {
-						'display': 'block',
-						'opacity': 0
+						'display':'block',
+						'opacity':0
 					}
 			}
 
@@ -318,18 +319,18 @@ $(function () {
 				b_b = e_t + e_h;
 			if ((b_t < w_t || b_t > w_b) || (b_b < w_t || b_b > w_b - 200)) {
 				$('html, body').stop()
-					.animate({scrollTop: b_t - 100}, 500, 'easeInOutExpo', function () {
+					.animate({scrollTop:b_t - 100}, 500, 'easeInOutExpo', function () {
 						if (step_config.showAsIntro != true) {
 							if (anitop == 0) anitop = properties.top;
 							if (anileft == 0) anileft = properties.left;
 							if (step_config.bgcolor == "white") $tooltip.addClass("white");
 							$tooltip.css(properties).css({
-								"display": "block",
-								"opacity": 0
+								"display":"block",
+								"opacity":0
 							}).animate({
-									"top": anitop,
-									"left": anileft,
-									"opacity": 1
+									"top":anitop,
+									"left":anileft,
+									"opacity":1
 								}, 500);
 						}
 					});
@@ -338,19 +339,19 @@ $(function () {
 				if (anitop == 0) anitop = properties.top;
 				if (anileft == 0) anileft = properties.left;
 				$tooltip.css(properties).css({
-					"display": "block",
-					"opacity": 0
+					"display":"block",
+					"opacity":0
 				}).animate({
-						"top": anitop,
-						"left": anileft,
-						"opacity": 1
+						"top":anitop,
+						"left":anileft,
+						"opacity":1
 					}, 500);
 			}
 		}
 		if (step_config.showAsIntro == true) {
 			{
 				$('html, body').stop()
-					.animate({scrollTop: 0}, 500, 'easeInOutExpo');
+					.animate({scrollTop:0}, 500, 'easeInOutExpo');
 				showOverlay(0, step_config.text);
 			}
 		}
@@ -371,7 +372,7 @@ $(function () {
 		$tourcontrols += '</div>';
 
 		$('body').prepend($tourcontrols);
-		$('#tourcontrols').animate({'bottom': '0px'}, 500);
+		$('#tourcontrols').animate({'bottom':'0px'}, 500);
 	}
 
 	function hideControls() {
@@ -387,13 +388,13 @@ $(function () {
 		$("#inner").prepend(introText);
 		innerWidth = $("#inner").width() / 10 * 7;
 		$("#introtext").css({
-			"top": $(window).height() * 0.5
+			"top":$(window).height() * 0.5
 		}).width(innerWidth);
 		var introtextHeight = $("#introtext").height();
 		if (config[step].bgcolor == "white") $("#introtext").addClass("white");
 		$("#introtext").css({
-			"margin-top": "-" + introtextHeight / 2 + "px",
-			"margin-left": "-" + ($("#introtext").width() / 2) + "px"
+			"margin-top":"-" + introtextHeight / 2 + "px",
+			"margin-left":"-" + ($("#introtext").width() / 2) + "px"
 		});
 	}
 
