@@ -1,7 +1,7 @@
 body {
 	background: #111;
-	padding: 0px;
-	margin: 0px;
+	padding: 0;
+	margin: 0;
 	font-family: 'Georgia', serif;
 }
 
@@ -18,7 +18,7 @@ body {
 
 #wrapper {
 	position: absolute;
-	left: 0px;
+	left: 0;
 	top: 40px;
 	width: 100%;
 	overflow: hidden;
@@ -66,7 +66,7 @@ body {
 	padding: 5px 10px;
 	font-size: 14px;
 	text-shadow: none;
-	margin: 0px;
+	margin: 0;
 	text-align: center;
 }
 
@@ -121,77 +121,77 @@ body {
 }
 
 .tooltip_arrow_T {
-	background-position: 0px -7px;
+	background-position: 0 -7px;
 	top: -7px;
 	left: 50%;
 	margin-left: -3.5px;
 }
 
 .tooltip_arrow_TL {
-	background-position: 0px -7px;
+	background-position: 0 -7px;
 	top: -7px;
 	left: 5px;
 }
 
 .tooltip_arrow_TR {
-	background-position: 0px -7px;
+	background-position: 0 -7px;
 	top: -7px;
 	right: 5px;
 }
 
 .tooltip_arrow_B {
-	background-position: 0px 0px;
+	background-position: 0 0;
 	bottom: -7px;
 	left: 50%;
 	margin-left: -3.5px;
 }
 
 .tooltip_arrow_BL {
-	background-position: 0px 0px;
+	background-position: 0 0;
 	bottom: -7px;
 	left: 5px;
 }
 
 .tooltip_arrow_BR {
-	background-position: 0px 0px;
+	background-position: 0 0;
 	bottom: -7px;
 	right: 5px;
 }
 
 .tooltip_arrow_L {
-	background-position: -7px 0px;
+	background-position: -7px 0;
 	top: 50%;
 	margin-top: -6.5px;
 	left: -7px;
 }
 
 .tooltip_arrow_LT {
-	background-position: -7px 0px;
+	background-position: -7px 0;
 	top: 5px;
 	left: -7px;
 }
 
 .tooltip_arrow_LB {
-	background-position: -7px 0px;
+	background-position: -7px 0;
 	bottom: 5px;
 	left: -7px;
 }
 
 .tooltip_arrow_R {
-	background-position: 0px 0px;
+	background-position: 0 0;
 	top: 50%;
 	margin-top: -6.5px;
 	right: -7px;
 }
 
 .tooltip_arrow_RT {
-	background-position: 0px 0px;
+	background-position: 0 0;
 	top: 5px;
 	right: -7px;
 }
 
 .tooltip_arrow_RB {
-	background-position: 0px 0px;
+	background-position: 0 0;
 	bottom: 5px;
 	right: -7px;
 }
@@ -200,8 +200,8 @@ body {
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	top: 0px;
-	left: 0px;
+	top: 0;
+	left: 0;
 	background: #000;
 	opacity: 0.8;
 	z-index: 100;
@@ -234,11 +234,11 @@ body {
 .tourcontrols {
 	position: fixed;
 	bottom: 20px;
-	left: 0px;
+	left: 0;
 	background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGA4DQAA0ADMRZKzDAAAAABJRU5ErkJggg==') repeat;
 	*filter: progid: DXImageTransform . Microsoft . gradient(startColorstr = #cc000000, endColorstr = #cc000000) /* won't validate, CSS hack, a method for alpha color backgrounds, http://tinyurl.com/ly6rj2 */;
 	color: #fff;
-	text-shadow: 0px 0px 1px #fff;
+	text-shadow: 0 0 1px #fff;
 	font-size: 16px;
 	padding: 10px;
 	-webkit-border-top-right-radius: 10px;
@@ -253,7 +253,7 @@ body {
 	color: #f0f0f0;
 	cursor: pointer;
 	font-weight: normal;
-	margin: 0px 5px;
+	margin: 0 5px;
 	float: left;
 	font-family: arial;
 }
@@ -286,13 +286,13 @@ body {
 	float: left;
 	width: 30px;
 	height: 30px;
-	margin: 5px 0px 5px 5px;
+	margin: 5px 0 5px 5px;
 	cursor: pointer;
 	background: url(../images/controls.png) top left no-repeat;
 }
 
 #prevstep {
-	background-position: -30px 0px;
+	background-position: -30px 0;
 }
 
 .nav {

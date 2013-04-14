@@ -33,16 +33,17 @@ $(function () {
 	});
 	$('body').keyup(function (event) {
 		if (event.keyCode == '39') {
+			event.preventDefault();
 			goNext();
 		}
 		if (event.keyCode == '37') {
+			event.preventDefault();
 			goPrevious();
 		}
 	});
 
 	function goNext() {
-		previousStep = false
-		event.preventDefault();
+		previousStep = false;
 		if (step < total_steps) {
 			$.address.value(config[step + 1].name);
 			lastStep = step;
@@ -55,8 +56,7 @@ $(function () {
 	;
 
 	function goPrevious() {
-		previousStep = true
-		event.preventDefault();
+		previousStep = true;
 		if (step > 0) {
 			$.address.value(config[step - 1].name);
 			lastStep = step;

@@ -28,13 +28,12 @@
  */
 
 var gridWidth = 1000,
-	tooltipWidth = 250,
 	config = [
 		{
 			"screenNumber":1,
 			"name":"start",
 			"showAsIntro":true,
-			"text":"<strong>Welcome to the screens of <br />project XY!</strong><br><br><small>For navigating through the tour use the buttons on the bottom left.</small>"
+			"text":"<strong>Welcome to the screens of <br />project XY!</strong><br><br>For navigating through the tour use the buttons on the bottom left."
 		},
 		{
 			"screenNumber":1,
@@ -59,7 +58,7 @@ var gridWidth = 1000,
 			"posX":60,
 			"posY":1170,
 			"tooltipWidth":100,
-			"text":"Awesome buttoms",
+			"text":"Awesome buttons",
 			"position":"B"
 		},
 		{
