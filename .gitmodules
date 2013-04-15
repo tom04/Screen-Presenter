@@ -1,0 +1,6 @@
+[submodule "vendor/Symfony/Component/ClassLoader"]
+	path = vendor/Symfony/Component/ClassLoader
+	url = https://github.com/symfony/ClassLoader
+[submodule "vendor/NoiseLabs/ToolKit/ConfigParser"]
+	path = vendor/NoiseLabs/ToolKit/ConfigParser
+	url = git://github.com/noiselabs/configparser.php.git

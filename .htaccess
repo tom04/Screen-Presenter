@@ -1,2 +1,5 @@
 
-# Never cache images to be save that clients get the latest ones
+RewriteEngine  on
+RewriteRule ^js/(.*) Src/ScreenPresenter/Resources/js/$1
+RewriteRule ^css/(.*) Src/ScreenPresenter/Resources/css/$1
+RewriteRule ^images/(.*) Src/ScreenPresenter/Resources/images/$1

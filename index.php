@@ -1,15 +1,8 @@
 <?php
 
-require_once('lib/ScreenPresenter.php');
+require_once __DIR__.'/Src/Autoload.php';
 
+$configFile = 'config.txt';
 
-$files = array(
-	'demoscreen1.jpg', 'demoscreen2.jpg'
-);
-
-$instance = new screenpresenter();
-$instance->setFilePath('screens/');
-$instance->setFiles($files);
-$instance->setPageTitle('My screens');
-$instance->setConfigFile('js/config_short.js');
-$instance->run();
+$fo = new ScreenPresenter\Run($configFile);
+$fo->start();

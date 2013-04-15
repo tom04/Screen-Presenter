@@ -27,7 +27,7 @@
  L   left
  */
 
-var gridWidth = 1000,
+
 	config = [
 		{
 			"screenNumber":1,
@@ -72,7 +72,4 @@ var gridWidth = 1000,
 			"showAsIntro":true,
 			"text":"<strong>Thank you. </strong><br/><br />Please contact John Doe if you got any questions"
 		}
-	],
-	previousStep = false,
-	step = 0,
-	total_steps = config.length - 1;
+	]

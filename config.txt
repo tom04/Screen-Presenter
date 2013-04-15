@@ -1,0 +1,23 @@
+[default]
+	title = My screens
+	header = <div id="header"><div class="inside">Welcome to the screens</div></div>
+	files = screens/demoscreen1.jpg, screens/demoscreen2.jpg,screens/demoscreen_dark.jpg
+
+[screen 1]
+	screenNumber = 1
+	showAsIntro = 1
+	text = <strong>Hello World</strong>
+
+
+[screen 2]
+	screenNumber = 2
+	showAsIntro = 0
+	text = <strong>Hello World</strong>
+
+[screen 3]
+	screenNumber = 3
+
+[the end]
+	screenNumber = 3
+	showAsIntro = 1
+	text = <strong>The end</strong>

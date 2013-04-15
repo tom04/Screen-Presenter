@@ -13,7 +13,7 @@ body {
 }
 
 #header .inside {
-	margin:10px 10px;
+	margin: 10px 10px;
 }
 
 #wrapper {
@@ -37,8 +37,6 @@ body {
 
 /*
 * Tour Definitions
-*
-*
 */
 
 .tooltip {
@@ -53,12 +51,12 @@ body {
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGA4DQAA0ADMRZKzDAAAAABJRU5ErkJggg==') repeat;
-	*filter: progid: DXImageTransform . Microsoft . gradient(startColorstr = #cc000000, endColorstr = #cc000000) /* won't validate, CSS hack, a method for alpha color backgrounds, http://tinyurl.com/ly6rj2 */;
+	/**filter: progid: DXImageTransform . Microsoft . gradient(startColorstr = #cc000000, endColorstr = #cc000000) *//* won't validate, CSS hack, a method for alpha color backgrounds, http://tinyurl.com/ly6rj2 *//*;*/
 }
 
 .tooltip.white {
 	background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWP4////aQAJxwPJ0Zvh2QAAAABJRU5ErkJggg==') repeat;
-	*filter: progid: DXImageTransform . Microsoft . gradient(startColorstr = #ccffffff, endColorstr = #ccffffff) /* won't validate, CSS hack, a method for alpha color backgrounds, http://tinyurl.com/ly6rj2 */;
+	/**filter: progid: DXImageTransform . Microsoft . gradient(startColorstr = #ccffffff, endColorstr = #ccffffff) *//* won't validate, CSS hack, a method for alpha color backgrounds, http://tinyurl.com/ly6rj2 *//*;*/
 	color: #000;
 }
 
@@ -95,7 +93,7 @@ body {
 .white .tooltip_arrow_TL,
 .white .tooltip_arrow_TR,
 .white .tooltip_arrow_BL,
-.white tooltip_arrow_BR {
+.white .tooltip_arrow_BR {
 	background-image: url(../images/topbottom_white.png);
 }
 
@@ -205,7 +203,7 @@ body {
 	background: #000;
 	opacity: 0.8;
 	z-index: 100;
-	filter: progid:DXImageTransform.Microsoft.Alpha(opacity = 80);
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=80);
 }
 
 .overlay.white {
@@ -236,7 +234,7 @@ body {
 	bottom: 20px;
 	left: 0;
 	background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGA4DQAA0ADMRZKzDAAAAABJRU5ErkJggg==') repeat;
-	*filter: progid: DXImageTransform . Microsoft . gradient(startColorstr = #cc000000, endColorstr = #cc000000) /* won't validate, CSS hack, a method for alpha color backgrounds, http://tinyurl.com/ly6rj2 */;
+	/**filter: progid: DXImageTransform . Microsoft . gradient(startColorstr = #cc000000, endColorstr = #cc000000) *//* won't validate, CSS hack, a method for alpha color backgrounds, http://tinyurl.com/ly6rj2 *//*;*/
 	color: #fff;
 	text-shadow: 0 0 1px #fff;
 	font-size: 16px;
