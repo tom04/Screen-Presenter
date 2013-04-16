@@ -53,7 +53,7 @@ class Run {
 
 		$singleSlides = array();
 
-		foreach($slides as $slide) {
+		foreach ($slides as $slide) {
 			/** @var $slide Slide */
 			$slide = $slide;
 			$slideConfiguration = array();
@@ -62,17 +62,24 @@ class Run {
 			$slideConfiguration[] = '"posX":' . $slide->getPosX();
 			$slideConfiguration[] = '"posY":' . $slide->getPosY();
 			$slideConfiguration[] = '"tooltipWidth":' . $slide->getTooltipWidth();
-			$slideConfiguration[] = '"text": "' . $slide->getText() . '"';
+			$text = $slide->getText();
+			if (!empty($text)) {
+				$slideConfiguration[] = '"text": "' . $slide->getText() . '"';
+			}
 			$slideConfiguration[] = '"position": "' . $slide->getPosition() . '"';
 			$slideConfiguration[] = '"bgcolor": "' . $slide->getBackgroundColor() . '"';
 			$slideConfiguration[] = '"showAsIntro": ' . $this->renderBooleanValue($slide->getShowAsIntro());
 
-			$singleSlides[] = '{' . chr(10) . implode(',' . chr(10), $slideConfiguration) . '}';
+			foreach ($slideConfiguration as $key => $value) {
+				$slideConfiguration[$key] = chr(9) . $value;
+			}
+
+			$singleSlides[] = chr(10) . '{' . chr(10) . implode(',' . chr(10), $slideConfiguration) . chr(10) . '}';
 		}
 
-		$content = 'config = [' . implode(',', $singleSlides) . ']';
+		$content = 'config = [' . implode(',', $singleSlides) . chr(10) . ']';
 
-		return '<script type="text/javascript">' . $content . '</script>';
+		return '<script type="text/javascript">' . chr(10) . $content . chr(10) . '</script>';
 	}
 
 	protected function renderBooleanValue($value) {

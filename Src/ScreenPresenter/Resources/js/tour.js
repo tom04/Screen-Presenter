@@ -1,11 +1,12 @@
 $(function () {
-	$("#inner").css({
-		"margin-left":"-" + gridWidth / 2 + "px"
-	}).width(gridWidth);
+
 	var	previousStep = false,
 		gridWidth = 1000,
 		step = 0,
 		total_steps = config.length - 1;
+	$("#inner").css({
+		"margin-left":"-" + gridWidth / 2 + "px"
+	}).width(gridWidth);
 	var screenWidth = $("#wrapper").children("img").width()
 		, screenHeight = $("#wrapper").children("img").height()
 		, screens = $("#wrapper img");

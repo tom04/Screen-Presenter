@@ -9,10 +9,21 @@
 	text = <strong>Hello World</strong>
 
 
-[screen 2]
+[screen 2-font]
 	screenNumber = 2
-	showAsIntro = 0
-	text = <strong>Hello World</strong>
+	posX = 0
+	posY = 240
+	tooltipWidth = 100
+	text = A nice font
+	position = R
+
+[screen 2-buttons]
+	screenNumber = 2
+	posX = 60
+	posY = 1170
+	tooltipWidth = 100
+	text = Awesome buttons
+	position = B
 
 [screen 3]
 	screenNumber = 3
