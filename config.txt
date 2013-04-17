@@ -1,22 +1,22 @@
 [default]
 	title = My screens
 	backgroundColor = #000;
-	header = <div id="header"><div class="inside">Welcome to the screens</div></div>
+	header = <div id="header"><div class="inside"><strong>Screen presentation </strong> by Georg Ringer, more at <a href="http://www.montagmorgen.at">montagmorgen.at</a>!</div></div>
 	files = screens/demoscreen1.jpg, screens/demoscreen2.jpg,screens/demoscreen_dark.jpg
 
 [screen 1]
 	screenNumber = 1
 	showAsIntro = 1
-	text = <strong>Hello World</strong><br />Navigate by icons bottom left corner or arrow keys
+	text = <strong>Awesome Screen Presentation</strong><br />Simple to use, easy to configure
 
 
 [screen 2-font]
 	screenNumber = 2
-	posX = 0
+	posX = 500
 	posY = 240
 	tooltipWidth = 100
 	text = A nice font
-	position = R
+	position = L
 
 [screen 2-buttons]
 	screenNumber = 2
@@ -28,8 +28,13 @@
 
 [screen 3]
 	screenNumber = 3
+	posX = 105
+	posY = 180
+	tooltipWidth = 200
+	text = A different design with a dark background
+	position = T
 
 [the end]
 	screenNumber = 3
 	showAsIntro = 1
-	text = <strong>The end</strong>
+	text = <strong>The end</strong><br />For details, please contact <a href="office@example.org">office@example.org</a>.

@@ -345,7 +345,7 @@ $(function () {
 		$("#tour_overlay").css("display", "none").fadeIn(700);
 		var introText = '<p id="introtext">' + text + '</p>';
 		$("#inner").prepend(introText);
-		innerWidth = $("#inner").width() / 10 * 7;
+		innerWidth = $("#inner").width() / 10 * 8;
 		$("#introtext").css({
 			"top":$(window).height() * 0.5
 		}).width(innerWidth);

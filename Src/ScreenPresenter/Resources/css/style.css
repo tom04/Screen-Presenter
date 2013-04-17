@@ -1,19 +1,34 @@
+@import url(http://fonts.googleapis.com/css?family=Cinzel+Decorative:400,900);
+
 body {
 	background: #111;
 	padding: 0;
 	margin: 0;
-	font-family: 'Georgia', serif;
+	font-family: 'Dosis', sans-serif;
+	/*background: url(http://s.cdpn.io/3/blurry-blue.jpg);*/
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 #header {
-	height: 40px;
+	height: 39px;
 	overflow: hidden;;
-	background: #eee;
+	background: #999;
 	border-bottom: 1px solid #ccc;
 }
 
 #header .inside {
 	margin: 10px 10px;
+}
+
+#header .inside a {
+	color: #333;
 }
 
 #wrapper {
@@ -62,10 +77,12 @@ body {
 
 .tooltip p {
 	padding: 5px 10px;
-	font-size: 14px;
+	font-size: 16px;
 	text-shadow: none;
 	margin: 0;
 	text-align: center;
+	color: #eee;
+	font-weight: 500;
 }
 
 .tooltip_arrow {
@@ -212,8 +229,7 @@ body {
 
 #introtext {
 	color: #fff;
-	font-size: 36px;
-	font-family: 'Georgia';
+	font-size: 40px;
 	text-align: center;
 	position: absolute;
 	left: 50%;
@@ -224,9 +240,17 @@ body {
 	color: #000;
 }
 
-#introtext small {
+#introtext span {
 	font-size: 18px;
 	line-height: 1.5;
+}
+
+#introtext strong {
+	font-size: 60px;
+}
+
+#introtext a {
+	color: lightblue;
 }
 
 .tourcontrols {

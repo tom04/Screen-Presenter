@@ -65,7 +65,7 @@ class Run {
 			$slideConfiguration[] = '"tooltipWidth":' . $slide->getTooltipWidth();
 			$text = $slide->getText();
 			if (!empty($text)) {
-				$slideConfiguration[] = '"text": "' . $slide->getText() . '"';
+				$slideConfiguration[] = '"text": ' . $this->renderTextValue($slide->getText());
 			}
 			$slideConfiguration[] = '"position": "' . $slide->getPosition() . '"';
 			$slideConfiguration[] = '"bgcolor": "' . $slide->getBackgroundColor() . '"';
@@ -85,6 +85,10 @@ class Run {
 
 	protected function renderBooleanValue($value) {
 		return $value ? 'true' : 'false';
+	}
+
+	protected function renderTextValue($value) {
+		return '\'' . str_replace('\'', '\\\'', $value) . '\'';
 	}
 
 }
