@@ -4,7 +4,7 @@ require_once __DIR__ . '/../vendor/Symfony/Component/ClassLoader/UniversalClassL
 
 $loader = new Symfony\Component\ClassLoader\UniversalClassLoader();
 $loader->registerNamespaces(array(
-	'NoiseLabs' => __DIR__ . PATH_SEPARATOR . '..' . PATH_SEPARATOR . 'vendor',
+	'NoiseLabs' => __DIR__ . '//' . '..' . '//' . 'vendor',
 	'ScreenPresenter' => __DIR__
 ));
 

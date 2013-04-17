@@ -11,6 +11,8 @@ class Configuration {
 
 	protected $header = '';
 
+	protected $backgroundColor = '';
+
 	/** @var array */
 	protected $files = array();
 
@@ -25,6 +27,7 @@ class Configuration {
 					throw new \Exception('Title not defined');
 				}
 				$this->setTitle($sectionConfig['title']);
+				$this->backgroundColor = $sectionConfig['backgroundColor'];
 				$this->setFiles($sectionConfig['files']);
 
 				if (isset($sectionConfig['header'])) {
@@ -35,7 +38,6 @@ class Configuration {
 			}
 		}
 	}
-
 
 	/**
 	 * @param array $slides
@@ -91,6 +93,13 @@ class Configuration {
 		return $this->files;
 	}
 
-
+	/**
+	 * Get background color
+	 *
+	 * @return string
+	 */
+	public function getBackgroundColor() {
+		return $this->backgroundColor;
+	}
 
 }

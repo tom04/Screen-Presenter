@@ -156,7 +156,7 @@
 						if (_webkit) {
 							$('<style type="text/css" />')
 								.appendTo('head')
-								.text('#' + ID + '::-webkit-resizer { background-color: #fff; }');
+								.text('#' + ID + '::-webkit-resizer { backgroundColor-color: #fff; }');
 						}
 					}
 					if (_msie && !_hashchange) {

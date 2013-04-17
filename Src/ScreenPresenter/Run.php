@@ -24,6 +24,7 @@ class Run {
 			'###PAGE_TITLE###' => htmlspecialchars($configuration->getTitle()),
 			'###HEADER###' => $configuration->getHeader(),
 			'###FILES###' => $this->renderFiles(),
+			'###BACKGROUNDCOLOR###' => $configuration->getBackgroundColor(),
 			'###CONFIGURATION###' => $this->renderConfiguration()
 		);
 

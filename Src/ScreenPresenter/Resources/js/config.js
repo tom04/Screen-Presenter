@@ -60,7 +60,7 @@ var screenConfig = [
 		"posX":550,
 		"posY":1320,
 		"tooltipWidth":500,
-		"text":"Dark in here... so tooltip's <b>background</b> is adjustable, too",
+		"text":"Dark in here... so tooltip's <b>backgroundColor</b> is adjustable, too",
 		"position":"T"
 	},
 	{

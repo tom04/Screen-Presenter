@@ -1,5 +1,6 @@
 [default]
 	title = My screens
+	backgroundColor = #000;
 	header = <div id="header"><div class="inside">Welcome to the screens</div></div>
 	files = screens/demoscreen1.jpg, screens/demoscreen2.jpg,screens/demoscreen_dark.jpg
 
